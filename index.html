@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title>cat calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
+</head>
+<style>
+    body{
+        background-image: linear-gradient(red, orange, yellow, green, blue, purple);
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    h1 {
+        color: yellow;
+    }
+
+    .pictures{
+        width: 50%;
+        height: auto;
+    }
+
+    #lulu{
+        color: orange;
+    }
+
+    .calcInputs{
+        display: flex;
+        flex-direction: column;
+        max-width: 200px;
+    }
+</style>
+<body>
+    <h1>cat years calculator</h1>
+    <div class="calcInputs">
+        <input id="human_years" min="0" max="25" type="number" />
+        <button onclick=calculateCatAge()>Calculate</button>
+        <input id="cat_years" min="0" max="25" placeholder="0" type="number" />
+    </div>  
+    <!--
+    <p>here are my cats</p> 
+    <ol>
+    <li id="lulu">lulu</li>
+        <li>lily</li>
+        <li>percy</li>
+    </ol>
+     Here is a comment, I wont render 
+    <img src="./cats.JPG" class="pictures" />
+    <img src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png" class="pictures" />
+    -->
+</body>
+<script>
+    moment().format();
+
+
+    function calculateAge(birthday, targetId){
+        let today = moment(Date.now());
+        let duration = moment.duration(today.diff(birthday));
+        console.warn(duration, targetId);
+    }
+
+
+    function calculateCatAge(){
+        let result=0
+        let cat_years = document.querySelector("#cat_years").value;
+        let human_years = document.querySelector("#human_years").value;
+        switch(human_years){
+            case "0":
+                result = 0;
+                break;
+            case "1":
+                result = 15;
+                break;
+            case "2":
+                result = 24;
+                break;
+            default:
+                result = 24 + (4 * (human_years - 2));;
+                break;           
+        }
+
+        console.warn(result);
+        document.querySelector("#cat_years").value = result;
+    }
+
+    window.onload = function(){
+        console.log('page has loaded');
+        setInterval(function(){
+            calculateAge(new Date(2019, 11, 20), 'lily');// Lily
+            calculateAge(new Date(2020, 4, 12 ), 'percy')// Percy
+        }, 1000)
+    }
+</script>
+</html>
